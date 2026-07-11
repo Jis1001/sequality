@@ -10,5 +10,22 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        
+        Calculate calc = new Calculate();
+        print(calc, 10, 1);
+        print(calc, 25, 1);
+        print(calc, 10, 15);
+        print(calc, 25, 15); 
+    }
+
+    public static void print(Calculate calc, int age, int size) {
+        int individual = calc.getIndividualFee(age);
+        int total = calc.getTotalFee(age, size);
+
+        if (size >= 10) {
+            System.out.println("Age" + age + ",Size" + size + ":Individual" + individual + ",Total" + total + "(Discount applied).");
+        } else {
+            System.out.println("Age" + age + ",Size" + size + ":Individual" + individual + ",Total" + total + ".");
+        }
     }
 }

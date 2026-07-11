@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CalculateTest {
+
     @Test
     public void testSum() {
         Calculate calculator = new Calculate();
@@ -11,21 +12,27 @@ public class CalculateTest {
         assertEquals(expected, calculator.sum(2, 3));
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-        printResult(12,10);
-        printResult(13,9);  
+    @Test
+    public void testGetIndividualFeeChild() {
+        Calculate calculator = new Calculate();
+        assertEquals(1000, calculator.getIndividualFee(12));
+    }
+    
+    @Test
+    public void testGetIndividualFeeAdult() {
+        Calculate calculator = new Calculate();
+        assertEquals(2000, calculator.getIndividualFee(13));
     }
 
-    public static void printResult(int age, int size) {
-        Calculate calc = new Calculate();
-        int individual = calc.getIndividualFee(age);
-        int total = calc.getTotalFee(age, size);
-
-        if (size >= 10) {
-            System.out.println("Age" + age + ",Size" + size + ":Individual" + individual + ",Total" + total + "(Discount applied)");
-        } else {
-            System.out.println("Age" + age + ",Size" + size + ":Individual" + individual + ",Total" + total);
-        }
+    @Test
+    public void testGetTotalFeeNoDiscount() {
+        Calculate calculator = new Calculate();
+        assertEquals(18000, calculator.getTotalFee(13, 9));
+    }
+    
+    @Test
+    public void testGetTotalFeeDiscount() {
+        Calculate calculator = new Calculate();
+        assertEquals(9000, calculator.getTotalFee(12, 10));
     }
 }
